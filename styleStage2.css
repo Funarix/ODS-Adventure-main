@@ -1,0 +1,322 @@
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #333;
+    margin: 0;
+}
+
+#app {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Fonte de pixel art para os textos */
+.pixel-font {
+    font-family: 'Press Start 2P', cursive;
+}
+
+#game-screen {
+    margin-top: 20px;
+}
+
+#instructions {
+    margin-bottom: 20px;
+}
+
+#command-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.command-btn {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    cursor: pointer;
+    transition: transform 0.1s ease; /* Transição suave para o efeito de clique */
+}
+
+
+#execute-btn {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+#game-area-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#game-area {
+    width: 400px;
+    height: 400px;
+    border: 1px solid #000;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(10, 40px);
+    grid-template-rows: repeat(10, 40px);
+    overflow: hidden; /* Garante que nada saia da área do jogo */
+    background: url('Assets/DiningRoomLower.png') no-repeat center center; /* Substitua pelo caminho da sua imagem */
+    background-size: cover; /* Redimensiona a imagem para cobrir toda a área */
+}
+
+#grid-container > div {
+    background-color: rgba(255, 255, 255, 0.2); /* Transparência para mostrar o fundo */
+    border: 1px solid rgba(110, 107, 107, 0.977); /* Bordas ainda visíveis */
+}
+
+
+#grid-container {
+    display: contents;
+}
+
+
+
+
+
+
+
+
+
+#character, #target {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    transition: top 0.5s, left 0.5s;
+}
+
+#feedback {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.feedback-img {
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    margin: 5px;
+}
+.flip-horizontal {
+    transform: scaleX(-1); /* Aplica o efeito de flip horizontal */
+}
+#command-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    position: relative; /* Permite posicionamento absoluto dentro do painel */
+}
+
+#execute-btn {
+    cursor: pointer;
+    margin-left: 20px;
+    margin-top: 10px;
+    width: 40px; /* Tamanho original */
+    height: 40px; /* Tamanho original */
+    transition: transform 0.1s ease; /* Transição suave para o efeito de clique */
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+.blink {
+    animation: blink 0.5s linear 0s 4; /* Piscar a cada 0.5s durante 2s (4 iterações) */
+}
+
+#command-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.command-slot {
+    width: 50px; /* Ajusta o tamanho dos botões */
+    height: 50px; /* Ajusta o tamanho dos botões */
+    margin: 5px;
+    border: 2px solid #333; /* Borda mais escura para contraste */
+    border-radius: 12px; /* Bordas arredondadas */
+    background-color: #e0e0e0; /* Fundo cinza claro */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: default;
+    transition: background-color 0.3s, border-color 0.3s; /* Suaviza a transição de cor */
+}
+
+.command-slot:hover {
+    background-color: #d0d0d0; /* Fundo cinza escuro ao passar o mouse */
+    border-color: #222; /* Escurece a borda ao passar o mouse */
+}
+
+.command-slot:active {
+    background-color: #b0b0b0; /* Fundo cinza mais escuro quando pressionado */
+}
+/* Adiciona o efeito de piscando para o personagem quando ele colide com a borda */
+.blink-border {
+    animation: blink-border 0.5s linear infinite;
+}
+
+@keyframes blink-border {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+h1 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: transparent; /* Torna o texto transparente para exibir o gradiente */
+    background: linear-gradient(90deg, 
+        #26BDE2, #0A97D9, #00689D, #19486A,  /* Azul */
+        #4C9F38, #3F7E44, #56C02B,          /* Verde */
+        #DDA63A, #FCC30B,                  /* Amarelo */
+        #E5243B, #C5192D, #FF3A21, #A21942,/* Vermelho */
+        #DD1367                            /* Roxo */
+    );
+    -webkit-background-clip: text; /* Suporte para navegadores Webkit */
+    background-clip: text; /* Exibe o gradiente apenas na área do texto */
+}
+
+#sound-control {
+    width: 30px;
+    height: 27px;
+    position: fixed; /* Mantém o ícone fixo na tela */
+    bottom: 5%; /* Ajuste relativo à altura da tela */
+    right: 5%; /* Ajuste relativo à largura da tela */
+    cursor: pointer;
+    transition: transform 0.2s;
+    z-index: 10; /* Garante que o ícone fique acima de outros elementos */
+}
+
+
+#sound-control:active {
+    transform: scale(0.9); /* Animação de clique */
+}
+
+
+
+#start-screen {
+    text-align: center;
+    color: white;
+}
+
+#game-title {
+    font-size: 36px;
+    margin-bottom: 20px;
+    background: linear-gradient(90deg, 
+        #26BDE2, #0A97D9, #00689D, #19486A, 
+        #4C9F38, #3F7E44, #56C02B,          
+        #DDA63A, #FCC30B,                  
+        #E5243B, #C5192D, #FF3A21, #A21942,
+        #DD1367                            
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Centralizar e ajustar o layout da tela inicial */
+#start-app {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#start-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* Espaçamento entre os elementos */
+}
+
+/* Estilizando o logo */
+#start-image {
+    width: 250px; /* Ajuste o tamanho conforme necessário */
+    height: auto;
+    margin-right: 10px; /* Move para a direita */
+}
+
+/* Estilizando o botão Start */
+#start-button {
+    font-size: 16px;
+    padding: 10px 20px;
+    color: white;
+    background-color: #4C9F38;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s ease;
+    font-family: 'Press Start 2P', cursive; /* Fonte pixel art */
+    margin-top: 20px; /* Move o botão para baixo */
+    margin-left: -10px; /* Move o botão para a esquerda */
+}
+
+#start-button:hover {
+    background-color: #3F7E44;
+}
+
+#start-button:active {
+    transform: scale(0.95);
+}
+
+/* Animação de rotação */
+@keyframes rotate-clockwise {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Aplica a animação à imagem */
+#start-image {
+    animation: rotate-clockwise 15s linear infinite; /* 5 segundos para uma rotação completa */
+}
+
+
+#start-ods1 {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+
+
+
+
+
+

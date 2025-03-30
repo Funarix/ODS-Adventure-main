@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ODS 2 - Fome Zero!</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> <!-- Fonte pixel art -->
+</head>
+<body>
+    <div id="start-ods1"> <!-- Nome único para esta tela -->
+        <h1>ODS 2 - Juntos, vamos dar tchau para a fome!</h1>
+              
+ 
+        <div id="start-screen">
+            <img id="start-image" src="Assets/Pixel Art/icon/ods.png" alt="Game Logo" />
+            <img id="ods2-image" src="Assets/Pixel Art/icon/ods2.png" alt="Imagem ODS 2" />
+            
+            <button id="start-button" class="pixel-font">Iniciar</button>
+        </div>
+    </div>
+  
+    <script>
+        // Adiciona funcionalidade ao botão de iniciar
+        document.getElementById('start-button').addEventListener('click', () => {
+            window.location.href = 'stage2.html'; // Redireciona para a página stage1.html
+        });
+    </script>
+</body>
+</html>

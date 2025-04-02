@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     typeWriter();
 });
 
-
+  
   
 document.addEventListener("DOMContentLoaded", () => {
     // Criar elemento da mão

@@ -264,20 +264,44 @@ h1 {
     margin-right: 10px; /* Move para a direita */
 }
 
-/* Estilizando o botão Start */
-#start-button {
+/* Estilos comuns para todos os botões */
+.button-group button {
     font-size: 16px;
     padding: 10px 20px;
     color: white;
-    background-color: #4C9F38;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.1s ease;
-    font-family: 'Press Start 2P', cursive; /* Fonte pixel art */
-    margin-top: 20px; /* Move o botão para baixo */
-    margin-left: -10px; /* Move o botão para a esquerda */
+    font-family: 'Press Start 2P', cursive;
+    margin-top: 20px;
 }
+
+/* Botão Jogar */
+#start-button {
+    background-color: #4C9F38; /* Verde (ODS 3) */
+}
+
+/* Botão Tutorial */
+#tutorial-button {
+    background-color: #C5192D; /* Vermelho (ODS 1) */
+}
+
+/* Botão Sobre */
+#sobre-button {
+    background-color: #FF6900; /* Laranja (ODS 9) */
+}
+
+
+
+/* Agrupamento dos botões na horizontal */
+.button-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
 
 #start-button:hover {
     background-color: #3F7E44;
@@ -310,6 +334,34 @@ h1 {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
+/* Estilo comum para botões de iniciar fases */
+.start-button {
+    font-size: 16px;
+    padding: 10px 20px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s ease;
+    font-family: 'Press Start 2P', cursive;
+    margin-top: 20px;
+}
+
+/* Cores personalizadas por ODS */
+.ods1-button {
+    background-color: #C5192D; /* Vermelho - ODS 1 */
+}
+.ods2-button {
+    background-color: #DDA63A; /* Exemplo - ODS 2 */
+}
+/* Adicione mais conforme necessário */
+
+/* Caso use o botão da tela inicial ainda com ID */
+#start-button {
+    background-color: #4C9F38;
+}
+
 
 
 

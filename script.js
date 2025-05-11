@@ -175,7 +175,6 @@ function resetRandomPositions() {
 
 
 function executeCommands() {
-    // Usa a posição atual do personagem como ponto de partida
     let position = {
         top: parseInt(character.style.top, 10),
         left: parseInt(character.style.left, 10)
@@ -206,12 +205,11 @@ function executeCommands() {
             }
 
             if (isValidPosition(newPosition)) {
-                position = newPosition; // Atualiza a posição do personagem
+                position = newPosition;
                 character.style.top = `${position.top}px`;
                 character.style.left = `${position.left}px`;
                 animateCharacter();
             } else {
-                // Se a posição não é válida, adiciona o efeito visual
                 character.classList.add('blink-border');
                 setTimeout(() => character.classList.remove('blink-border'), 2000);
             }
@@ -222,19 +220,21 @@ function executeCommands() {
             clearInterval(animationFrame);
             character.src = 'assets/player.png';
 
-            // Verifica se o personagem chegou à posição do alvo (moeda)
             if (
                 position.top === parseInt(target.style.top, 10) &&
                 position.left === parseInt(target.style.left, 10)
             ) {
                 playCoinSound();
-                moveCoinUp(); // Mover moeda para célula acima
-                speedUpTargetAnimation(); // Acelera a animação da moeda
+                moveCoinUp();
+                speedUpTargetAnimation();
 
-                // Adiciona atraso e redireciona para a próxima fase
+                // Feedback positivo
+                feedback.textContent = 'Muito bem, você está ajudando o planeta e as pessoas!';
+
                 setTimeout(() => {
-                    window.location.href = "tutorial.html"; // Redireciona para a próxima fase
-                }, 2000);
+                    feedback.textContent = '';
+                    window.location.href = "tutorial.html";
+                }, 4000);
             } else {
                 feedback.textContent = 'Tente novamente!';
                 character.classList.add('blink');
@@ -242,14 +242,13 @@ function executeCommands() {
                     character.classList.remove('blink');
                     feedback.textContent = '';
                     resetCharacterPosition();
-                }, 2000);
+                }, 4000);
                 commands.length = 0;
                 commandSlots.forEach(slot => (slot.style.backgroundImage = ''));
             }
         }
     }, 500);
 }
-
 
 
 function moveCoinUp() {

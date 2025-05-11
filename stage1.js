@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             setTimeout(() => {
                 window.location.href = "ods2.html";
-            }, 2000);
+            }, 4000);
         }
     }
 

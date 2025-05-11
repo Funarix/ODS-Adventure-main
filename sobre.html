@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre - ODS Adventure</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        
+       
+
+            <h1 id="stage-title"></h1> <!-- ID adicionado para efeito Typewriter -->
+
+
+            <div id="start-screen">
+                <img id="start-image" src="Assets/Pixel Art/icon/ods.png" alt="Game Logo" />
+                
+                <div class="button-group">
+                    <button id="start-button">Próximo</button>
+                   
+                </div>
+                
+            </div>
+           
+    
+    </div>
+
+    <script src="sobre.js"></script>
+    <script>  // Redireciona para a tela do jogo (você pode alterar se não for mais tutorial.html)
+        document.getElementById('start-button').addEventListener('click', () => {
+            window.location.href = 'sobre2.html';
+        });</script>
+</body>
+</html>

@@ -16,15 +16,16 @@
             <img id="start-image" src="Assets/Pixel Art/icon/ods.png" alt="Game Logo" />
             <img id="ods2-image" src="Assets/Pixel Art/icon/ods2.png" alt="Imagem ODS 2" />
             
-            <button id="start-button" class="pixel-font">Iniciar</button>
+            <button class="start-button ods2-button">Iniciar</button>
+
         </div>
     </div>
   
     <script>
-        // Adiciona funcionalidade ao botão de iniciar
-        document.getElementById('start-button').addEventListener('click', () => {
-            window.location.href = 'stage2.html'; // Redireciona para a página stage1.html
+        document.querySelector('.start-button').addEventListener('click', () => {
+            window.location.href = 'stage2.html';
         });
     </script>
+    
 </body>
 </html>

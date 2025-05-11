@@ -12,18 +12,30 @@
         <h1>ODS Adventure</h1>
         <div id="start-screen">
             <img id="start-image" src="Assets/Pixel Art/icon/ods.png" alt="Game Logo" />
-            <button id="start-button" class="pixel-font">Iniciar</button>
-
+            
+            <div class="button-group">
+                <button id="start-button">Jogar</button>
+                <button id="tutorial-button">Tutorial</button>
+                <button id="sobre-button">Sobre</button>
+            </div>
             
         </div>
     </div>
 
-  
-  
     <script>
-        // Adiciona funcionalidade ao botão de iniciar
+        // Redireciona para a tela do jogo (você pode alterar se não for mais tutorial.html)
         document.getElementById('start-button').addEventListener('click', () => {
-            window.location.href = 'tutorial.html'; // Redireciona para o tutorial
+            window.location.href = 'ods1.html';
+        });
+
+        // Redireciona para a página de tutorial
+        document.getElementById('tutorial-button').addEventListener('click', () => {
+            window.location.href = 'tutorial.html';
+        });
+
+        // Redireciona para a página sobre
+        document.getElementById('sobre-button').addEventListener('click', () => {
+            window.location.href = 'sobre.html';
         });
     </script>
 </body>

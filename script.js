@@ -229,7 +229,7 @@ function executeCommands() {
                 speedUpTargetAnimation();
 
                 // Feedback positivo
-                feedback.textContent = 'Muito bem, você está ajudando o planeta e as pessoas!';
+                feedback.textContent = '';
 
                 setTimeout(() => {
                     feedback.textContent = '';

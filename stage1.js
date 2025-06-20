@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
             instructions.textContent = "";
 
             setTimeout(() => {
-                window.location.href = "ods2.html";
+                window.location.href = "congratulationsOds1.html";
             }, 4000);
         }
     }

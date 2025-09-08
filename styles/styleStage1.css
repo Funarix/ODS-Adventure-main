@@ -70,7 +70,7 @@ body {
     grid-template-columns: repeat(10, 40px);
     grid-template-rows: repeat(10, 40px);
     overflow: hidden; /* Garante que nada saia da área do jogo */
-    background: url('Assets/StreetNorthLower.png') no-repeat center center; /* Substitua pelo caminho da sua imagem */
+    background: url('../Assets/StreetNorthLower.png') no-repeat center center; /* Substitua pelo caminho da sua imagem */
     background-size: cover; /* Redimensiona a imagem para cobrir toda a área */
 }
 

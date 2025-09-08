@@ -1,5 +1,7 @@
 document.getElementById('execute-btn').addEventListener('click', executeCommands);
 
+
+
 const buttonPressSound = new Audio('Assets/audio/Game/button-pressed.mp3');
 buttonPressSound.volume = 1.0; // Define o volume máximo
 
@@ -11,6 +13,13 @@ const feedback = document.getElementById('feedback');
 const commandSlots = document.querySelectorAll('.command-slot');
 const backgroundMusic = document.getElementById('background-music');
 const soundControl = document.getElementById('sound-control');
+const walkSound = new Audio('Assets/audio/Game/steps.mp3');
+walkSound.loop = true; // Para que o som toque em loop
+walkSound.volume = 0.25; // Ajuste o volume
+
+
+let currentInitialPosition = { top: 0, left: 0 }; // Posição inicial do personagem na rodada
+
 
 let isSoundOn = false; // Estado do som
 let animationInterval;
@@ -163,9 +172,13 @@ function resetRandomPositions() {
     const targetPosition = possibleTargetPositions[Math.floor(Math.random() * possibleTargetPositions.length)];
 
     // Atualiza a posição do personagem no DOM
-    const characterPositionPixels = getCellPosition(characterPosition.row, String.fromCharCode(65 + characterPosition.col));
-    character.style.top = `${characterPositionPixels.top}px`;
-    character.style.left = `${characterPositionPixels.left}px`;
+const characterPositionPixels = getCellPosition(characterPosition.row, String.fromCharCode(65 + characterPosition.col));
+character.style.top = `${characterPositionPixels.top}px`;
+character.style.left = `${characterPositionPixels.left}px`;
+
+// Salva a posição inicial atual da rodada para reset
+currentInitialPosition = { ...characterPositionPixels };
+
 
     // Atualiza a posição da moeda no DOM
     const targetPositionPixels = getCellPosition(targetPosition.row, String.fromCharCode(65 + targetPosition.col));
@@ -173,14 +186,16 @@ function resetRandomPositions() {
     target.style.left = `${targetPositionPixels.left}px`;
 }
 
-
 function executeCommands() {
-    // Usa a posição atual do personagem como ponto de partida
     let position = {
         top: parseInt(character.style.top, 10),
         left: parseInt(character.style.left, 10)
     };
     let index = 0;
+
+    // Inicia o som de caminhada em loop
+    walkSound.currentTime = 0;
+    walkSound.play();
 
     animationInterval = setInterval(() => {
         if (index < commands.length) {
@@ -206,50 +221,55 @@ function executeCommands() {
             }
 
             if (isValidPosition(newPosition)) {
-                position = newPosition; // Atualiza a posição do personagem
+                position = newPosition;
                 character.style.top = `${position.top}px`;
                 character.style.left = `${position.left}px`;
                 animateCharacter();
             } else {
-                // Se a posição não é válida, adiciona o efeito visual
+                // Pisca borda em caso de movimento inválido
                 character.classList.add('blink-border');
                 setTimeout(() => character.classList.remove('blink-border'), 2000);
             }
 
             index++;
         } else {
+            // Para a animação e o som de caminhada
             clearInterval(animationInterval);
             clearInterval(animationFrame);
+            walkSound.pause();
             character.src = 'assets/player.png';
 
-            // Verifica se o personagem chegou à posição do alvo (moeda)
+            // Verifica se o personagem chegou no target
             if (
                 position.top === parseInt(target.style.top, 10) &&
                 position.left === parseInt(target.style.left, 10)
             ) {
                 playCoinSound();
-                moveCoinUp(); // Mover moeda para célula acima
-                speedUpTargetAnimation(); // Acelera a animação da moeda
+                moveCoinUp();
+                speedUpTargetAnimation();
 
-                // Adiciona atraso e redireciona para a próxima fase
+                feedback.textContent = '';
+
                 setTimeout(() => {
-                    window.location.href = "tutorial.html"; // Redireciona para a próxima fase
-                }, 2000);
+                    feedback.textContent = '';
+                    window.location.href = "tutorial.html";
+                }, 4000);
             } else {
+                // Caso erre, exibe feedback e reseta personagem
                 feedback.textContent = 'Tente novamente!';
                 character.classList.add('blink');
                 setTimeout(() => {
                     character.classList.remove('blink');
                     feedback.textContent = '';
                     resetCharacterPosition();
-                }, 2000);
+                }, 4000);
+
                 commands.length = 0;
                 commandSlots.forEach(slot => (slot.style.backgroundImage = ''));
             }
         }
     }, 500);
 }
-
 
 
 function moveCoinUp() {
@@ -296,7 +316,6 @@ function isValidPosition(position) {
 
 
 
-
 function resetCharacterPosition() {
     setTimeout(() => {
         // Renasce na posição inicial dinâmica da rodada
@@ -305,6 +324,7 @@ function resetCharacterPosition() {
         character.classList.remove('flip-horizontal'); // Remove o flip ao resetar
     }, 500); // Mantém o delay antes de resetar a posição
 }
+
 
 
 function animateCharacter() {

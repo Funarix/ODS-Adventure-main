@@ -88,6 +88,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 window.location.href = "congratulationsOds1.html";
             }, 4000);
         }
+
+        
     }
 
 

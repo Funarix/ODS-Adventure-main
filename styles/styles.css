@@ -78,7 +78,7 @@ body {
 }
 
 #grid-container > div {
-    background: url('assets/cell-background.png') no-repeat center center;
+    background: url('../assets/cell-background.png') no-repeat center center;
     background-size: cover;
     border: 1px solid white;
 }
